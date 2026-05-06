@@ -238,22 +238,41 @@ const LandingPage = () => {
       </Box>
 
       {/* SECTION 2: STATS BAR */}
-      <Box sx={{ bgcolor: '#1565c0', color: 'white', py: 3 }}>
+      <Box sx={{ bgcolor: '#1565c0', color: 'white', py: { xs: 4, sm: 3 } }}>
         <Container maxWidth="lg">
-          <Grid container justifyContent="center">
+          <Grid container justifyContent="center" spacing={{ xs: 2, sm: 0 }}>
             {STATS.map((stat, idx) => (
               <Grid 
                 item 
-                xs={3} 
+                xs={6} 
+                sm={3} 
                 key={stat.label} 
                 sx={{ 
                   textAlign: 'center', 
                   py: 2,
-                  borderRight: idx < STATS.length - 1 ? '1px solid rgba(255,255,255,0.2)' : 'none'
+                  borderRight: { 
+                    xs: idx % 2 === 0 ? '1px solid rgba(255,255,255,0.2)' : 'none',
+                    sm: idx < STATS.length - 1 ? '1px solid rgba(255,255,255,0.2)' : 'none' 
+                  },
+                  borderBottom: {
+                    xs: idx < 2 ? '1px solid rgba(255,255,255,0.2)' : 'none',
+                    sm: 'none'
+                  }
                 }}
               >
-                <Typography variant="h4" sx={{ fontWeight: 700, fontFamily: "'DM Serif Display', serif" }}>{stat.value}</Typography>
-                <Typography variant="body2" sx={{ opacity: 0.8 }}>{stat.label}</Typography>
+                <Typography 
+                  variant="h4" 
+                  sx={{ 
+                    fontWeight: 700, 
+                    fontFamily: "'DM Serif Display', serif",
+                    fontSize: { xs: '1.75rem', sm: '2.125rem' }
+                  }}
+                >
+                  {stat.value}
+                </Typography>
+                <Typography variant="body2" sx={{ opacity: 0.8, fontSize: { xs: '0.75rem', sm: '0.875rem' } }}>
+                  {stat.label}
+                </Typography>
               </Grid>
             ))}
           </Grid>
